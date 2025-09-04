@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WorkWoven by SJR</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    /* ------ Base ------ */
+    :root{
+      --bg: #0f1220;
+      --surface: #171a2b;
+      --surface-2:#1f2340;
+      --text:#eef1ff;
+      --muted:#a5a9c9;
+      --brand:#8bc6ff;
+      --accent:#bda9ff;
+      --ring: #8bc6ff;
+      --max: 1080px;
+      --radius: 12px;
+      --shadow: 0 10px 30px rgba(0,0,0,.25);
+    }
+
+    *{box-sizing:border-box}
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 80px; /* fixes sticky header overlap */
+    }
+
+    @media (prefers-reduced-motion: reduce){
+      html{scroll-behavior:auto}
+    }
+
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, Apple Color Emoji, Segoe UI Emoji;
+      color: var(--text);
+      background: radial-gradient(1200px 800px at 70% -20%, #2a2f56 0%, transparent 60%), var(--bg);
+      line-height:1.6;
+    }
+
+    img{max-width:100%;display:block}
+    a{color:var(--brand);text-decoration:none}
+    a:hover{text-decoration:underline}
+    .container{max-width:var(--max);margin-inline:auto;padding:clamp(16px,3vw,28px)}
+
+    .skip-link{
+      position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden;
+    }
+    .skip-link:focus{
+      left:16px;top:16px;width:auto;height:auto;background:var(--surface);padding:8px 12px;border-radius:8px
+    }
+
+    /* ------ Header/Nav ------ */
+    .site-header{
+      position:sticky;top:0;z-index:10;
+      background:rgba(15,18,32,.7);
+      backdrop-filter:saturate(140%) blur(10px);
+      border-bottom:1px solid #222640;
+    }
+    .nav{display:flex;align-items:center;gap:12px;flex-wrap:wrap;}
+    .logo{font-weight:800;letter-spacing:.06em}
+    .nav__menu{display:flex;gap:18px;list-style:none;margin:0;padding:0;margin-left:auto;align-items:center;flex-wrap:wrap;}
+    .nav__menu a{padding:8px 10px;border-radius:8px}
+    .btn{background:linear-gradient(90deg,var(--brand),var(--accent));color:#0b0f1d;padding:10px 16px;border-radius:999px;border:0;font-weight:700;display:inline-block;box-shadow:var(--shadow)}
+    .btn:hover{text-decoration:none;filter:saturate(1.2)}
+    .btn--ghost{background:transparent;color:var(--text);box-shadow:none;border:1px solid #39406a}
+    .btn--sm{padding:8px 12px;font-size:.9rem}
+
+    /* ------ Layout parts ------ */
+    .section{padding-block: clamp(40px, 6vw, 80px)}
+    .grid{display:grid;gap:24px}
+    .grid--2{grid-template-columns:repeat(2,minmax(0,1fr))}
+    .grid--3{grid-template-columns:repeat(3,minmax(0,1fr))}
+    @media (max-width: 820px){.grid--2,.grid--3{grid-template-columns:1fr}}
+    .lead{font-size:1.125rem;color:var(--text)}
+    .muted{color:var(--muted)}
+    .sm{font-size:.9rem}
+
+    /* ------ Cards / Testimonials ------ */
+    .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:24px;margin-top:24px;}
+    .cards .card{background:var(--surface);border-radius:var(--radius);padding:16px;box-shadow:var(--shadow)}
+    .testimonials{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:24px;margin-top:24px;}
+    .testimonial{background:var(--surface);border-radius:var(--radius);padding:18px;box-shadow:var(--shadow)}
+    .testimonial .who{font-weight:700;margin-top:8px}
+
+    /* ------ Portfolio Grid ------ */
+    #portfolio-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:24px;margin-top:24px;}
+    .project{display:flex;flex-direction:column;gap:10px;background:var(--surface);border-radius:var(--radius);padding:16px;box-shadow:var(--shadow)}
+
+    /* ------ Forms ------ */
+    label{display:grid;gap:6px;margin:10px 0}
+    input,textarea{ font:inherit;color:var(--text);background:var(--surface-2);border-radius:10px;padding:10px 12px;border:1px solid #2b2f54;}
+
+    /* ------ Footer ------ */
+    .site-footer{border-top:1px solid #222640;background:#0b0f1d;padding:20px 0;text-align:center}
+
+    /* Seamless top edges for card sections */
+    .section--cards{background:var(--bg);padding-top:0;}
+
+    /* About Strengths & Tools side-by-side */
+    .about-grid{display:grid;grid-template-columns:1fr 1fr; gap:32px; margin-top:24px;}
+    @media (max-width: 820px){.about-grid{grid-template-columns:1fr;}}
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav">
+      <div class="logo">SJR</div>
+      <ul class="nav__menu">
+        <li><a href="#about">About</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#portfolio">Portfolio</a></li>
+        <li><a href="#reviews">Reviews</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="https://www.linkedin.com/in/sarah-jane-reyes-a41a3630a/" target="_blank" class="btn">LinkedIn</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <!-- Hero / Loan Processing Card -->
+  <section class="section container">
+    <div class="cards">
+      <div class="card">
+        <h1>Loan Processing & Operations Support</h1>
+        <p class="lead">Hi, I’m <strong>Sarah Jane Reyes</strong> — a dedicated Loan Processing Specialist with experience across the Australian broker channel and the US loan markets.</p>
+        <div class="cta">
+          <a class="btn" href="#contact">Hire Me</a>
+          <a class="btn btn--ghost" href="#portfolio">See Work</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" class="section container">
+    <h2>About Me</h2>
+    <p>Hi, I’m Sarah Jane Reyes — a dedicated Loan Processing Specialist with 6+ years of experience across the Australian broker channel and the US loan markets. I specialize in making loan files move seamlessly from application to approval, ensuring accuracy, compliance, and efficiency at every step.</p>
+    <p>Beyond loan processing, I also bring expertise in data entry, verification, and customer service. Over the years, I’ve had the privilege of working with some of the biggest names in the industry such as Wells Fargo, AT&T, Doordash, and Resolve Finance.</p>
+    <p>My goal is simple: to save you time, minimize stress, and help your business grow with reliable back-end support. When I’m not managing files, you’ll find me exploring new ways to improve workflows, staying updated on financial guidelines, and delivering excellent client experiences.</p>
+
+    <div class="about-grid">
+      <div>
+        <h3>Strengths</h3>
+        <ul>
+          <li>Underwriter‑friendly submission packs</li>
+          <li>Meticulous doc review and data integrity</li>
+          <li>Calm, consistent client communication</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Tools</h3>
+        <ul>
+          <li>Loan Processing CRMs: ApplyOnline, SalesTrekker, XPM</li>
+          <li>Internal Systems: DOS-based CRM (Wells Fargo), Innovis, UNIX, Viewshop</li>
+          <li>Microsoft Office Suite, Google Workspace</li>
+          <li>Credit reporting systems, document verification tools</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="services" class="section section--cards container">
+    <h2>Services</h2>
+    <div class="cards">
+      <div class="card">
+        <strong>Mortgage Loan Processing</strong><br>
+        End‑to‑end processing support: fact‑find, documents, packaging, lender follow‑ups, and settlement coordination.
+      </div>
+      <div class="card">
+        <strong>Data Entry Specialist</strong><br>
+        Accurate data input and organization of loan documentation.
+      </div>
+      <div class="card">
+        <strong>Verification Analyst</strong><br>
+        Validate client information and verify documentation efficiently.
+      </div>
+      <div class="card">
+        <strong>Loan Documentation Processing</strong><br>
+        Handle packaging and submission of files for underwriters and lenders.
+      </div>
+      <div class="card">
+        <strong>Customer Service & Order Placement</strong><br>
+        Assist clients with queries and manage service workflows seamlessly.
+      </div>
+    </div>
+  </section>
+
+  <section id="portfolio" class="section section--cards container">
+    <h2>Portfolio</h2>
+    <div id="portfolio-grid">
+      <div class="project">AU Mortgage Loan Processing – Resolve Finance</div>
+      <div class="project">US Loan Processing – Wells Fargo Auto Loans & Credit Cards</div>
+      <div class="project">Data Entry & Verification Projects – Wells Fargo</div>
+      <div class="project">Customer Service Support – AT&T, DoorDash</div>
+    </div>
+  </section>
+
+  <section id="reviews" class="section section--cards container">
+    <h2>Client Reviews</h2>
+    <div class="testimonials">
+      <div class="testimonial">
+        <p>"The team at Resolve Finance guided us at every step and helped us secure a home loan quickly and efficiently. Sarah was there at every step guiding us and supporting us in fulfilling our dream of owning a house."</p>
+        <div class="who">– Poonam J</div>
+      </div>
+      <div class="testimonial">
+        <p>"Sarah has been excellent to work with and she and Tarun have gone above and beyond to help me secure a construction loan as a FHB. They were prompt, clear, and always available to answer my questions during the entire process. Their transparency and constant communication made the whole experience smooth and stress-free. I would definitely be recommending to my family and friends in the future."</p>
+        <div class="who">– Linh T</div>
+      </div>
+      <div class="testimonial">
+        <p>"A big thanks to Sarah, she was amazing with communication and kept us informed every step of the way."</p>
+        <div class="who">– Rashmi D</div>
+      </div>
+      <div class="testimonial">
+        <p>"I’m so glad I had Tarun and Sarah in my corner throughout the whole home loan process. They made something that felt really overwhelming super manageable and even exciting. Every question I had, no matter how small, they answered with patience and care. They took their time to explain to me in simple terms I can understand. It honestly felt like talking to a friend who just happens to be amazing with mortgages. I couldn’t have asked for a better guide—it made all the difference!"</p>
+        <div class="who">– Naj</div>
+      </div>
+      <div class="testimonial">
+        <p>"What an excellent service from Tarun Bhandari and Sarah Reyes from Resolve Finance. They made our mortgage application so smooth, Our application was approved just like that. Keep doing the fantastic job. Thank you for everything."</p>
+        <div class="who">– Busani S</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="section container">
+    <h2>Contact</h2>
+    <div class="contact-grid" style="display:grid; grid-template-columns:1fr 1fr; gap:32px; align-items:start;">
+      <form action="mailto:reyessarahjane18@gmail.com" method="post" enctype="text/plain">
+        <label>Name <input type="text" name="name" required></label>
+        <label>Email <input type="email" name="email" required></label>
+        <label>Message <textarea name="message" rows="4" required></textarea></label>
+        <button class="btn" type="submit">Send</button>
+        <p class="muted sm" style="margin-top:16px;">Prefer LinkedIn? <a href="https://www.linkedin.com/in/sarah-jane-reyes-a41a3630a/" target="_blank">Message me there</a>.</p>
+      </form>
+
+      <div class="quick-links">
+        <h3>Quick Links</h3>
+        <ul style="list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:12px;">
+          <li><a href="https://www.linkedin.com/in/sarah-jane-reyes-a41a3630a/" target="_blank">LinkedIn Profile</a></li>
+          <li><a href="#services">What I Do</a></li>
+          <li><a href="#portfolio">Portfolio</a></li>
+          <li><a href="#reviews">Reviews</a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    WorkWoven by SJR. · Weaving seamless loan support.
+  </footer>
+</body>
+</html>
